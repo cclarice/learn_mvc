@@ -5,7 +5,28 @@ class trainsController {
 	}
 
 	initialize () {
-		this.view.initialize()
+		const form = this.view.initialize()
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault()
+			// Validate:
+
+		})
+	}
+
+	formSubmitHandler (event) {
+		event.preventDefault()
+		console.log(event)
+		// Validate:
+		if (this.validateForm(event)) {
+
+		} else {
+			this.view.renderFormErrors()
+		}
+	}
+
+	validateForm () {
+
 	}
 }
 
@@ -13,20 +34,21 @@ class trainsView {
 	table = null
 
 	initialize () {
-		const inputs = {
-			inputNumber: document.createElement('input'),
-			inputWay: document.createElement('input')
-		}
-
-		inputs.inputNumber.type = 'text'
-		inputs.inputWay.type = 'text'
-		inputs.inputNumber.max = '3'
-		inputs.inputWay.max = '2'
-
-
+		this.form = document.createElement('form')
 		this.table = document.createElement('table')
 		this.tbody = document.createElement('tbody')
 		this.empty = document.createElement('tr')
+		this.form.innerHTML = `
+<label>
+	<span> Номер состава: </span>
+	<input type="text" maxlength="3" name="train">
+</label><br>
+<label>
+	<span> Путь состава: </span>
+	<input type="text" maxlength="2" name="way">
+</label><br>
+<button type="submit"> Добавить состав </button>
+`
 		this.table.innerHTML = `
 <thead>
 	<tr>
@@ -40,15 +62,14 @@ class trainsView {
 </thead>
 <tbody>
 </tbody>
-		`
-		this.empty.innerHTML = `
-<td> Empty </td>
-		`
-		document.body.appendChild(this.table)
+`
+		this.empty.innerHTML = `<td> Empty </td>`;
+		([this.form, this.table]).forEach((each) => document.body.appendChild(each))
 		this.table.appendChild(this.tbody)
 		this.render()
-		return inputs
+		return this.form
 	}
+
 	render (trains = []) {
 		this.buffer = [...trains]
 		if (!trains.length) {
@@ -69,10 +90,18 @@ class trainsView {
 						${trains[i].ways}
 					</td>
 					`
-					this.tbody.replaceChild(newTrain, this.tbody.children[i])
+					if (this.tbody.children.length > i) {
+						this.tbody.replaceChild(newTrain, this.tbody.children[i])
+					} else {
+						this.tbody.appendChild(newTrain)
+					}
 				}
 			}
 		}
+	}
+
+	renderFormErrors () {
+
 	}
 }
 
