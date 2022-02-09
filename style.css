@@ -1,3 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
+html {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+}
 
+body {
+  display: flex;
+  flex-flow: column;
+  min-width: 512px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+}
+
+.form__label {
+  line-height: 36px;
+}
+.form__label {
+  line-height: 36px;
+}
+.form__input {
+  appearance: none;
+  border: 1px solid #333;
+  background-color: #EEE;
+  font-size: 13px;
+  font-family: "JetBrains Mono", monospace;
+  width: 32px;
+  height: 24px;
+  outline: 2px solid transparent;
+}
+.form__input_error {
+  border: 1px solid #B00000;
+  outline: 2px solid #FF000080;
+}
+.form__label-error {
+  white-space: pre-line;
+}
+.form__submit {
+  width: 140px;
+  height: 28px;
+  font-size: 15px;
+  border-radius: 3px;
+  background-color: #0099D0;
+  color: white;
+  font-weight: 500;
+  border: 1px solid #005E83;
+}
+.form__submit:disabled {
+  color: #aaa;
+  background-color: #777;
+  border-color: #555;
+}
 
 /*# sourceMappingURL=style.css.map */
